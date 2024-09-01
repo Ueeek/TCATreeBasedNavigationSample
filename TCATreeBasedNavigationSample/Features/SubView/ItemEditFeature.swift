@@ -14,9 +14,9 @@ struct ItemEditFeature {
     struct State: Equatable {
         var item: String
     }
-    
+
     enum Action: Sendable {}
-    
+
     var body: some Reducer<State, Action> {
         Reduce { _, _ in
             return .none
@@ -24,9 +24,9 @@ struct ItemEditFeature {
     }
 }
 
-struct ItemEditFeatureView: View {
-    @Bindable var store: StoreOf<ItemDetailFeature>
-    
+struct ItemEditView: View {
+    @Bindable var store: StoreOf<ItemEditFeature>
+
     var body: some View {
         Text(" Item Edit of \(store.item)")
             .navigationTitle("Item Edit View")

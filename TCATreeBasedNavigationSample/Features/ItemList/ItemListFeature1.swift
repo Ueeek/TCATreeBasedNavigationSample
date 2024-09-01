@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-var items: [String] = ["Apple", "Banana", "Chocolate"]
+var items1: [String] = ["Apple", "Banana", "Chocolate"]
 var description1 = """
 + Implement ItemListView and ItemDetailView with TCA
 + User can go to ItemDetail from ItemListView
@@ -19,7 +19,7 @@ struct ItemListFeature1 {
     @ObservableState
     struct State: Equatable {
         @Presents var itemDetail: ItemDetailFeature.State?
-        var itemList: [String] = items
+        var itemList: [String] = items1
     }
 
     enum Action: Sendable {

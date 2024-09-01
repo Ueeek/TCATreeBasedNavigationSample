@@ -12,9 +12,9 @@ import SwiftUI
 struct ItemAddFeature {
     @ObservableState
     struct State: Equatable {}
-    
+
     enum Action: Sendable {}
-    
+
     var body: some Reducer<State, Action> {
         Reduce { _, _ in
             return .none
@@ -22,9 +22,9 @@ struct ItemAddFeature {
     }
 }
 
-struct ItemAddFeatureView: View {
-    @Bindable var store: StoreOf<ItemDetailFeature>
-    
+struct ItemAddView: View {
+    @Bindable var store: StoreOf<ItemAddFeature>
+
     var body: some View {
         Text(" Item Add")
             .navigationTitle("Item Add View")
