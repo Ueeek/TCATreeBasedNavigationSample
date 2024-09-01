@@ -20,6 +20,7 @@
 		06B3D8532C84665600F4EFBE /* ItemEditFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3D8522C84665600F4EFBE /* ItemEditFeature.swift */; };
 		06B3D8552C84668000F4EFBE /* ItemAddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3D8542C84668000F4EFBE /* ItemAddFeature.swift */; };
 		06B3D8592C8466E900F4EFBE /* ItemListFeature2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3D8582C8466E900F4EFBE /* ItemListFeature2.swift */; };
+		06B3D85B2C8469B700F4EFBE /* ItemListFeature3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3D85A2C8469B700F4EFBE /* ItemListFeature3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		06B3D8522C84665600F4EFBE /* ItemEditFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditFeature.swift; sourceTree = "<group>"; };
 		06B3D8542C84668000F4EFBE /* ItemAddFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAddFeature.swift; sourceTree = "<group>"; };
 		06B3D8582C8466E900F4EFBE /* ItemListFeature2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListFeature2.swift; sourceTree = "<group>"; };
+		06B3D85A2C8469B700F4EFBE /* ItemListFeature3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListFeature3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				06B3D84D2C84611200F4EFBE /* ItemListFeature1.swift */,
 				06B3D8582C8466E900F4EFBE /* ItemListFeature2.swift */,
+				06B3D85A2C8469B700F4EFBE /* ItemListFeature3.swift */,
 			);
 			path = ItemList;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				06B3D8512C84617D00F4EFBE /* ItemDetailFeature.swift in Sources */,
 				06B3D84E2C84611200F4EFBE /* ItemListFeature1.swift in Sources */,
 				06B3D8532C84665600F4EFBE /* ItemEditFeature.swift in Sources */,
+				06B3D85B2C8469B700F4EFBE /* ItemListFeature3.swift in Sources */,
 				06B3D8552C84668000F4EFBE /* ItemAddFeature.swift in Sources */,
 				06B3D8232C8460B800F4EFBE /* ContentView.swift in Sources */,
 				06B3D8592C8466E900F4EFBE /* ItemListFeature2.swift in Sources */,

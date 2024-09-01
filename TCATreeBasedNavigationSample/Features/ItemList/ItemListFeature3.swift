@@ -1,5 +1,5 @@
 //
-//  ItemListFeature2.swift
+//  ItemListFeature3.swift
 //  TCATreeBasedNavigationSample
 //
 //  Created by KoichiroUeki on 2024/09/01.
@@ -9,22 +9,27 @@ import Foundation
 import ComposableArchitecture
 import SwiftUI
 
-var items2: [String] = ["Apple", "Banana", "Chocolate"]
-var description2 = """
+var items3: [String] = ["Apple", "Banana", "Chocolate"]
+var description3 = """
 + User can go to 3 screens from ItemListView
     1. ItemDetail
     2. ItemEdit
     3. ItemAdd
-+ Prepare @Presents State for Each destinatino
++ Use `Destination enum`
 """
 
 @Reducer
-struct ItemListFeature2 {
+struct ItemListFeature3 {
+    @Reducer(state: .equatable)
+    enum Destination {
+        case itemDetail(ItemDetailFeature)
+        case itemEdit(ItemEditFeature)
+        case itemAdd(ItemAddFeature)
+    }
+
     @ObservableState
     struct State: Equatable {
-        @Presents var itemDetail: ItemDetailFeature.State?
-        @Presents var itemEdit: ItemEditFeature.State?
-        @Presents var itemAdd: ItemAddFeature.State?
+        @Presents var destination: Destination.State?
 
         var itemList: [String] = items2
     }
@@ -34,46 +39,36 @@ struct ItemListFeature2 {
         case tapEdit(item: String)
         case tapAdd
 
-        case itemDetail(PresentationAction<ItemDetailFeature.Action>)
-        case itemEdit(PresentationAction<ItemEditFeature.Action>)
-        case itemAdd(PresentationAction<ItemAddFeature.Action>)
+        case destination(PresentationAction<Destination.Action>)
     }
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .tapItem(let item):
-                state.itemDetail = ItemDetailFeature.State(item: item)
+                state.destination = .itemDetail(ItemDetailFeature.State(item: item))
                 return .none
             case .tapEdit(let item):
-                state.itemEdit = ItemEditFeature.State(item: item)
+                state.destination = .itemEdit(ItemEditFeature.State(item: item))
                 return .none
             case .tapAdd:
-                state.itemAdd = ItemAddFeature.State()
+                state.destination = .itemAdd(ItemAddFeature.State())
                 return .none
-            case .itemDetail, .itemEdit, .itemAdd:
+            case .destination:
                 return .none
             }
         }
-        .ifLet(\.$itemDetail, action: \.itemDetail) {
-            ItemDetailFeature()
-        }
-        .ifLet(\.$itemEdit, action: \.itemEdit) {
-            ItemEditFeature()
-        }
-        .ifLet(\.$itemAdd, action: \.itemAdd) {
-            ItemAddFeature()
-        }
+        .ifLet(\.$destination, action: \.destination)
     }
 }
 
-struct ItemListView2: View {
-    @Bindable var store: StoreOf<ItemListFeature2>
+struct ItemListView3: View {
+    @Bindable var store: StoreOf<ItemListFeature3>
 
     var body: some View {
         NavigationStack {
             VStack {
-                Text(description2)
+                Text(description3)
                     .font(.headline)
                     .padding(.horizontal, 10)
                 List {
@@ -95,13 +90,13 @@ struct ItemListView2: View {
                     }
                 }
             }
-            .navigationDestination(item: $store.scope(state: \.itemDetail, action: \.itemDetail)) { store in
+            .navigationDestination(item: $store.scope(state: \.destination?.itemDetail, action: \.destination.itemDetail)) { store in
                 ItemDetailView(store: store)
             }
-            .navigationDestination(item: $store.scope(state: \.itemEdit, action: \.itemEdit)) { store in
+            .navigationDestination(item: $store.scope(state: \.destination?.itemEdit, action: \.destination.itemEdit)) { store in
                 ItemEditView(store: store)
             }
-            .sheet(item: $store.scope(state: \.itemAdd, action: \.itemAdd)) { store in
+            .sheet(item: $store.scope(state: \.destination?.itemAdd, action: \.destination.itemAdd)) { store in
                 ItemAddView(store: store)
             }
             .navigationTitle("Item List View")

@@ -24,6 +24,13 @@ struct ContentView: View {
             .tabItem {
                 Text("Tab 2")
             }
+
+            ItemListView3(store: .init(initialState: ItemListFeature3.State()) {
+                ItemListFeature3()
+            })
+            .tabItem {
+                Text("Tab 3")
+            }
         }
     }
 }
